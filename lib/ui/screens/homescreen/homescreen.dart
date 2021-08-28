@@ -1,6 +1,7 @@
 
 
-import 'package:didi/ui/widgets/custom_button.dart';
+import 'package:didi/ui/screens/homescreen/widgets/cafeteria_tile.dart';
+import 'package:didi/ui/screens/homescreen/widgets/meal_preview_widget.dart';
 import 'package:flutter/material.dart';
 
 
@@ -12,57 +13,65 @@ class HomeScreen extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-        body: Container(
-          width: size.width,
+      body: Container(
+        padding: EdgeInsets.all(12),
+        width: size.width,
         height: size.height,
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
 
-            Spacer(
-              flex: 1,
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              child: Text("Do you like Waakye?",
+                style: Theme.of(context).textTheme.headline6,
+                textAlign: TextAlign.start,
+              ),
+            ),
+            SizedBox(
+                height: size.height  * 0.33,
+                child : MealPreviewWidget(
+                  name: "Waakye",
+                  price: 15,
+                  rating: 5,
+                )
             ),
 
 
-            Text("Didi.",
-            style: Theme.of(context).textTheme.headline4!
-                .copyWith(
-              fontWeight: FontWeight.w900,
-              
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              child: Text("Cafeteria",
+                style: Theme.of(context).textTheme.headline5!
+                .copyWith(fontWeight: FontWeight.w900),
+                textAlign: TextAlign.start,
+              ),
             ),
-            ),
-
-            RichText(
-              maxLines: 1,
-              text: TextSpan(
-                  text: "Exclusive food ordering app for the ",
-                  style: Theme.of(context).textTheme.bodyText1,
-
-                  children: [
-                    TextSpan(
-                        text: "Ashesi Community",
-                        style: Theme.of(context).textTheme.bodyText1!.copyWith(fontWeight: FontWeight.w900)
-                    )
-                  ]
+            Container(
+              padding: EdgeInsets.all(8),
+              height: size.height  * 0.3,
+              color: Colors.grey.withOpacity(0.3),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  CafeteriaTile(
+                    name: "Akonnor Catering Services",
+                    locationText: "Near Student Office Area",
+                    starCount: 5,
+                  ),
+                  Spacer(),
+                  CafeteriaTile(
+                    name: "Big Ben Catering Services",
+                    locationText: "Old Lynes Cuisine",
+                    starCount: 5,
+                  ),
+                ],
               ),
             ),
 
-            Spacer(
-              flex: 1,
-            ),
 
-            CustomButton(
-              margin: EdgeInsets.all( 12.0),
-              filled: true,
-                text: "Get Started",
-                onPressed: (){
-
-                }
-            )
           ],
-        )
-        )
+        ),
+      ),
     );
   }
 }
