@@ -1,3 +1,4 @@
+import 'package:didi/ui/screens/homescreen/widgets/order_bottom_sheet.dart';
 import 'package:didi/ui/widgets/rating_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -38,6 +39,14 @@ class MealPreviewWidget extends StatelessWidget {
               ),
               child: IconButton(
                   onPressed: (){
+
+                    showBottomSheet(
+                        elevation: 12,
+                        backgroundColor: Colors.black26,
+                        context: context,
+                        builder: (context){
+                          return OrderBottomSheet();
+                        });
                     },
                   icon: Icon(Icons.arrow_forward)
               ),
@@ -71,11 +80,6 @@ class _Card extends StatelessWidget {
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20)
       ),
-      // decoration: BoxDecoration(
-      //   color: Colors.red,
-      //     borderRadius: BorderRadius.circular(36)
-      // ),
-      // padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
       child: Padding(
         padding: EdgeInsets.all(12) + EdgeInsets.symmetric(horizontal: 12),
         child: Column(

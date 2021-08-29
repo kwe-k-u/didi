@@ -23,30 +23,29 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
-    return Container(
-      margin: margin,
-      child: OutlinedButton(
-        style: ButtonStyle(
-          shape: MaterialStateProperty.all(RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(4),
-              side: BorderSide(color: Colors.black, width: 8)
-          )),
-
-          backgroundColor: MaterialStateProperty.all(
-              filled ? Colors.black : Colors.transparent ),
+    return InkWell(
+      splashColor: Colors.red,
+      onTap: onPressed,
+      splashFactory: InkSplash.splashFactory,
+      child: Container(
+        margin: margin,
+        decoration: BoxDecoration(
+            color: filled ? Colors.black : Colors.transparent,
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(
+                color: Colors.black,
+                width: 3
+            )
         ),
-        onPressed: onPressed,
-        child: Container(
-          padding: EdgeInsets.all(12),
-          width: width ?? size.width * 0.8,
-          height: height,
-          child: Center(
-            child: Text(text, style:
-            Theme.of(context).textTheme.button!.copyWith(
-              color: filled ? Colors.white : Colors.black,
+        padding: EdgeInsets.all(12),
+        width: width ?? size.width * 0.8,
+        height: height,
+        child: Center(
+          child: Text(text, style:
+          Theme.of(context).textTheme.button!.copyWith(
+            color: filled ? Colors.white : Colors.black,
 
-            ),),
-          ),
+          ),),
         ),
       ),
     );

@@ -1,3 +1,5 @@
+import 'package:didi/ui/screens/cafeteria_menu_screen/cafeteria_menu_screen.dart';
+import 'package:didi/ui/screens/homescreen/widgets/order_bottom_sheet.dart';
 import 'package:didi/ui/widgets/rating_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -72,9 +74,15 @@ class CafeteriaTile extends StatelessWidget {
               ),
             )
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 16.0),
-            child: Icon(Icons.arrow_forward, color: Colors.white,),
+          IconButton(
+            icon: Icon(Icons.arrow_forward),
+            color: Colors.white,
+            onPressed: (){
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context)=> CafeteriaMenuScreen()
+                  )
+              );
+            },
           ),
         ],
       ),

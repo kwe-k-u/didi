@@ -27,8 +27,9 @@ class LandingPage extends StatelessWidget {
 
 
                 Text("Didi.",
-                  style: Theme.of(context).textTheme.headline4!
+                  style: Theme.of(context).textTheme.headline2!
                       .copyWith(
+                    color: Theme.of(context).textTheme.headline2!.color!.withOpacity(1),
                     fontWeight: FontWeight.w900,
 
                   ),

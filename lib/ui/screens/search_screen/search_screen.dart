@@ -1,4 +1,4 @@
-import 'package:didi/ui/screens/search_screen/widget/search_result_tile.dart';
+import 'package:didi/ui/widgets/meal_tile.dart';
 import 'package:didi/ui/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 
@@ -36,7 +36,11 @@ class _SearchScreenState extends State<SearchScreen> {
             Expanded(
               child: ListView(
                 children: [
-                  SearchResultTile()
+                  MealTile(
+                    name: "Jollof",
+                    provider: "Big Ben Catering Services",
+                    rating: 5
+                  )
                 ],
               ),
             )

@@ -18,30 +18,32 @@ class IssueScreen extends StatelessWidget {
           padding: EdgeInsets.all(8) + EdgeInsets.only(top: 12),
           width: size.width,
         height: size.height,
-        child: Column(
-          children: [
-            CustomTextField(
-                labelText: "Contact (Optional)",
-                controller: contact,
-                keyboardType: TextInputType.text),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              CustomTextField(
+                  labelText: "Contact (Optional)",
+                  controller: contact,
+                  keyboardType: TextInputType.text),
 
-            CustomTextField(
-              expand: true,
-                labelText: "Feedback",
-                controller: contact,
-                keyboardType: TextInputType.text
-            ),
+              CustomTextField(
+                expand: true,
+                  labelText: "Feedback",
+                  controller: contact,
+                  keyboardType: TextInputType.text
+              ),
 
 
-            CustomButton(
-              margin: EdgeInsets.symmetric(vertical: 12),
-              filled: true,
-                text: "Send Feedback",
-                onPressed: (){
+              CustomButton(
+                margin: EdgeInsets.symmetric(vertical: 12),
+                filled: true,
+                  text: "Send Feedback",
+                  onPressed: (){
 
-                }
-                )
-          ],
+                  }
+                  )
+            ],
+          ),
         )
         )
     );

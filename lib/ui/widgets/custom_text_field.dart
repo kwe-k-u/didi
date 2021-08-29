@@ -54,7 +54,6 @@ class _CustomTextFieldState extends State<CustomTextField> {
 
 
           TextFormField(
-            autovalidateMode: AutovalidateMode.onUserInteraction,
             validator: widget.validator,
             minLines: widget.expand ? 15 : null,
             maxLines: widget.expand ? 15 : null,
@@ -68,7 +67,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
               hintText: widget.hintText,
               errorStyle: Theme.of(context).textTheme.bodyText2!.copyWith(color: Colors.red),
               hintStyle: Theme.of(context).textTheme.bodyText1!.copyWith(color: Colors.grey),
-              fillColor: Colors.grey.withOpacity(0.15),
+              fillColor: Colors.grey.withOpacity(0.25),
               filled: true,
 
               border: OutlineInputBorder(
