@@ -1,7 +1,7 @@
 import 'package:didi/ui/screens/cafeteria_menu_screen/cafeteria_menu_screen.dart';
-import 'package:didi/ui/screens/homescreen/widgets/order_bottom_sheet.dart';
 import 'package:didi/ui/widgets/rating_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 
 class CafeteriaTile extends StatelessWidget {
@@ -66,7 +66,20 @@ class CafeteriaTile extends StatelessWidget {
                       children: [
                         RatingWidget(count: starCount),
                         Spacer(),
-                        Icon(Icons.call, color: Colors.green,)
+                        InkWell(
+                          child: Icon(Icons.call, color: Colors.green,),
+                          onTap: ()async{
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Calling Akonnor"),));
+
+                             if ( await canLaunch("tel://0559582518")){
+                               print("calling");
+                               await  launch("tel://0559582518");
+                             } else {
+                               print("cant call");
+
+                             }
+                          },
+                        )
                       ],
                     )
                   ],

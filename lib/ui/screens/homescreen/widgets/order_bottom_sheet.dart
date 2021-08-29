@@ -1,7 +1,10 @@
-import 'dart:ffi';
 
 import 'package:didi/ui/widgets/custom_button.dart';
+import 'package:didi/ui/widgets/custom_drop_down.dart';
 import 'package:didi/ui/widgets/custom_text_field.dart';
+import 'package:didi/utils/enums/meal_portion.dart';
+import 'package:didi/utils/enums/payment_method.dart';
+import 'package:didi/utils/helpers/methods.dart';
 import "package:flutter/material.dart";
 
 
@@ -13,6 +16,13 @@ class OrderBottomSheet extends StatefulWidget {
 }
 
 class _OrderBottomSheetState extends State<OrderBottomSheet> {
+  TextEditingController name = new TextEditingController();
+  MealPortion portion = MealPortion.full_portion;
+  PaymentMethod payment = PaymentMethod.meal_plan;
+  TextEditingController card = new TextEditingController();
+  TextEditingController pin = new TextEditingController();
+//todo fix keyboard overflow problem
+
   @override
   void initState() {
     super.initState();
@@ -40,57 +50,87 @@ class _OrderBottomSheetState extends State<OrderBottomSheet> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Padding(
-            padding: const EdgeInsets.only(bottom:20, top:8.0),
+            padding: const EdgeInsets.only( top:0.0),
             child: Container(
               height: 5,
               width: size.width * 0.1,
               color: Colors.grey,
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only( bottom: 40.0),
-            child: Text("Order", style: Theme.of(context).textTheme.headline6,
-            ),
+
+          Spacer(flex: 1,),
+          Text("Order", style: Theme.of(context).textTheme.headline6,
           ),
+
+
+          Spacer(flex: 2,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              CustomTextField(
+                  controller: name,
+                  width: size.width * 0.4,
+                  keyboardType: TextInputType.text
+              ),
+              CustomDropDown<MealPortion>(
+
+                initialValue: MealPortion.full_portion,
+                onChanged: (MealPortion selected){
+                    portion = selected;
+                },
+                items: [
+                  DropdownMenuItem(
+                    child: Text("Full Portion"),
+                    value: MealPortion.full_portion,
+                  ),
+                  DropdownMenuItem(
+                    child: Text("Half Portion"),
+                    value: MealPortion.half_portion,
+                  ),
+
+                ],
+                width: size.width * 0.4,
+              ),
+            ],
+          ),
+
+
+
+          Spacer(flex: 1,),
+          CustomDropDown<PaymentMethod>(
+
+            onChanged: (value){
+              payment = value;
+
+            },
+            initialValue: PaymentMethod.meal_plan,
+            items: [
+              DropdownMenuItem(
+                child: Text("Meal Plan"),
+                value: PaymentMethod.meal_plan,
+              ),
+              DropdownMenuItem(
+                child: Text("Mobile Money"),
+                value: PaymentMethod.mobile_money,
+              ),
+            ],
+          ),
+
+          Spacer(flex: 1,),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 CustomTextField(
-                    controller: TextEditingController(),
-                    width: size.width * 0.4,
-                    keyboardType: TextInputType.text),
-                CustomTextField(
-                    controller: TextEditingController(),
-                    width: size.width * 0.4,
-                    keyboardType: TextInputType.text),
-              ],
-            ),
-          ),
-
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: CustomTextField(
-                controller: TextEditingController(),
-                keyboardType: TextInputType.text),
-          ),
-
-
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                CustomTextField(
-                    controller: TextEditingController(),
+                    controller: card,
                     width: size.width * 0.4,
                     keyboardType: TextInputType.text,
                   icon: Icons.credit_card_outlined,
                 ),
                 CustomTextField(//todo obscure (overflow problem)
                     icon: Icons.visibility_off,
-                    controller: TextEditingController(),
+                    controller: pin,
                     width: size.width * 0.4,
                     keyboardType: TextInputType.text),
               ],
@@ -98,17 +138,25 @@ class _OrderBottomSheetState extends State<OrderBottomSheet> {
           ),
 
 
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: CustomTextField(
-                controller: TextEditingController(),
-                keyboardType: TextInputType.text),
+          Spacer(flex: 1,),
+          CustomDropDown(
+            hintText: "Extras",
+            items: [],
+            initialValue: null,
+            onChanged: (index) {
+              //todo add extras
+
+            },//todo add values
           ),
 
-          Padding(
-            padding: const EdgeInsets.all(20),
-            child: Text("GHS 18.00", style: Theme.of(context).textTheme.headline4,),
-          ),
+          Spacer(flex: 2,),
+          Text("GHS 18.00", style: Theme.of(context).textTheme.headline4!
+              .copyWith(
+            fontWeight: FontWeight.w900,
+            color: Colors.black
+          ),),
+
+          Spacer(flex: 2,),
 
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -117,6 +165,7 @@ class _OrderBottomSheetState extends State<OrderBottomSheet> {
                 width: size.width * 0.4,
                   text: "Cancel",
                   onPressed: (){
+                  Navigator.pop(context);
 
                   }
                   ),
@@ -124,7 +173,16 @@ class _OrderBottomSheetState extends State<OrderBottomSheet> {
                   width: size.width * 0.4,
                   filled: true,
                   text: "Place Order",
-                  onPressed: (){
+                  onPressed: ()async{
+                    await placeOrder(
+                      name: name.text,
+                      portion: portion,
+                      card: card.text,
+                      pin : pin.text,
+                      paymentMethod: payment,
+                      extras : null //todo add extras
+                    );
+                    Navigator.pop(context);
                   }),
             ],
           )

@@ -1,5 +1,6 @@
 import 'package:didi/ui/widgets/custom_button.dart';
 import 'package:didi/ui/widgets/custom_text_field.dart';
+import 'package:didi/utils/helpers/methods.dart';
 import 'package:flutter/material.dart';
 
 
@@ -29,7 +30,7 @@ class IssueScreen extends StatelessWidget {
               CustomTextField(
                 expand: true,
                   labelText: "Feedback",
-                  controller: contact,
+                  controller: feedback,
                   keyboardType: TextInputType.text
               ),
 
@@ -38,7 +39,11 @@ class IssueScreen extends StatelessWidget {
                 margin: EdgeInsets.symmetric(vertical: 12),
                 filled: true,
                   text: "Send Feedback",
-                  onPressed: (){
+                  onPressed: () async {
+                  await sendFeedback(
+                    contact: contact.text,
+                      feedback: feedback.text
+                  );
 
                   }
                   )

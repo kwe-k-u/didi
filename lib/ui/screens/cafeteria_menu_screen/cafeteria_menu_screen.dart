@@ -1,6 +1,7 @@
 import 'package:didi/ui/screens/cafeteria_menu_screen/widgets/custom_toggle_buttons.dart';
 import 'package:didi/ui/screens/home/widgets/custom_bottom_navigator_bar.dart';
 import 'package:didi/ui/widgets/meal_tile.dart';
+import 'package:didi/utils/models/meal.dart';
 import 'package:flutter/material.dart';
 
 class CafeteriaMenuScreen extends StatefulWidget {
@@ -14,6 +15,7 @@ class _CafeteriaMenuScreenState extends State<CafeteriaMenuScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         centerTitle: true,
         title: Text("Akonnor * Menu"),
@@ -35,17 +37,30 @@ class _CafeteriaMenuScreenState extends State<CafeteriaMenuScreen> {
             ),
             Expanded(
               child: Container(
-                color: Colors.grey.withOpacity(0.08),
+                decoration: BoxDecoration(
+                    color: Colors.grey.withOpacity(0.08),
+                    borderRadius: BorderRadius.circular(12)
+                ),
                 child: ListView.builder(
                   itemCount: 4,
                     itemBuilder: (context, index){
                   return Padding(
                     padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 4),
                     child: Card(
-                      elevation: 1,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12)
+                      ),
+                      elevation: 0.5,
 
-                      child: MealTile(name: "Deluxe Waakye", provider: "Extras * Bread and omelete", rating: 5),
-                    ),
+                      child:MealTile(
+                        meal: Meal (
+                          name: "Deluxe waakye",
+                          rating: 5,
+                          provider: 'Akonnor Catering Services',
+                          price: 18,
+                        ),
+                      ),
+                    )
                   );
 
                 }),

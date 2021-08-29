@@ -1,16 +1,14 @@
 import 'package:didi/ui/widgets/rating_widget.dart';
 import 'package:didi/utils/helpers/methods.dart';
+import 'package:didi/utils/models/meal.dart';
 import 'package:flutter/material.dart';
 
 
 class MealTile extends StatelessWidget {
-  final String name;
-  final  String provider;
-  final double rating;
+  final Meal meal;
+
   const MealTile({Key? key, 
-    required this.name,
-    required this.provider,
-    required this.rating
+  required this.meal,
   }) : super(key: key);
   
 
@@ -23,19 +21,21 @@ class MealTile extends StatelessWidget {
         child: Placeholder(
         ),
       ),
-      title: Text(name),
+      title: Text(meal.name),
       subtitle: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(provider, style: Theme.of(context).textTheme.overline,),
+          Text(meal.provider,
+            style: Theme.of(context).textTheme.overline,
+          ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: RatingWidget(count: rating),
+            child: RatingWidget(count: meal.rating),
           )
         ],
       ),
       onTap: (){
-        orderMeal(context);
+        showOrderMealPopup(context);
       },
 
     );

@@ -1,5 +1,6 @@
 import 'package:didi/ui/widgets/meal_tile.dart';
 import 'package:didi/ui/widgets/custom_text_field.dart';
+import 'package:didi/utils/models/meal.dart';
 import 'package:flutter/material.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -37,9 +38,12 @@ class _SearchScreenState extends State<SearchScreen> {
               child: ListView(
                 children: [
                   MealTile(
-                    name: "Jollof",
-                    provider: "Big Ben Catering Services",
-                    rating: 5
+                    meal: Meal (
+                      name: "Jollof",
+                      rating: 5,
+                      provider: 'Akonnor Catering Services',
+                      price: 18,
+                    ),
                   )
                 ],
               ),

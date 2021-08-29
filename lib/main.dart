@@ -1,4 +1,3 @@
-import 'package:didi/ui/screens/homescreen/homescreen.dart';
 import 'package:didi/ui/screens/landing_page/landing_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -19,10 +18,14 @@ class MyApp extends StatelessWidget {
         appBarTheme: AppBarTheme(
           color: Colors.white,
           elevation: 0,
-          textTheme: GoogleFonts.poppinsTextTheme()
+          textTheme: GoogleFonts.poppinsTextTheme(),
+          titleTextStyle: GoogleFonts.poppinsTextTheme().headline3!.copyWith(fontWeight: FontWeight.w900)
         ),
         primarySwatch: Colors.blue,
         canvasColor: Colors.white,
+        iconTheme: IconTheme.of(context).copyWith(
+         color: Colors.black
+        )
       ),
       home: LandingPage(),
     );
