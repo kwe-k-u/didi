@@ -1,4 +1,5 @@
 import 'package:didi/ui/widgets/rating_widget.dart';
+import 'package:didi/utils/helpers/methods.dart';
 import 'package:flutter/material.dart';
 
 
@@ -26,10 +27,16 @@ class MealTile extends StatelessWidget {
       subtitle: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(provider),
-          RatingWidget(count: rating)
+          Text(provider, style: Theme.of(context).textTheme.overline,),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: RatingWidget(count: rating),
+          )
         ],
       ),
+      onTap: (){
+        orderMeal(context);
+      },
 
     );
   }
