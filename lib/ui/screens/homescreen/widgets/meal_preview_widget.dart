@@ -76,41 +76,49 @@ class _Card extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 24,
-      color: Colors.red,
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20)
       ),
-      child: Padding(
-        padding: EdgeInsets.all(12) + EdgeInsets.symmetric(horizontal: 12),
-        child: Column(
-          children: [
-            Spacer(),
-            Row(
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(name,
-                      style: Theme.of(context).textTheme.headline6!
-                          .copyWith(
-                          color: Colors.white
+      child: Container(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+          image: DecorationImage(
+            fit: BoxFit.cover,
+            image: AssetImage("assets/images/waakye_main.jpg",)
+          )
+        ),
+        child: Padding(
+          padding: EdgeInsets.all(12) + EdgeInsets.symmetric(horizontal: 12),
+          child: Column(
+            children: [
+              Spacer(),
+              Row(
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(name,
+                        style: Theme.of(context).textTheme.headline6!
+                            .copyWith(
+                            color: Colors.white
+                        ),
                       ),
-                    ),
-                    RatingWidget(count: rating,
+                      RatingWidget(count: rating,
 
-                    )
-                  ],
-                ),
-                Spacer(),
-                Text("GHS ${price.toStringAsFixed(2)}",
-                style: Theme.of(context).textTheme.headline6!
-                    .copyWith(
-                  color: Colors.white
-                ),
-                )
-              ],
-            ),
-          ],
+                      )
+                    ],
+                  ),
+                  Spacer(),
+                  Text("GHS ${price.toStringAsFixed(2)}",
+                  style: Theme.of(context).textTheme.headline6!
+                      .copyWith(
+                    color: Colors.white
+                  ),
+                  )
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

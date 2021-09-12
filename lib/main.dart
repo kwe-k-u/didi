@@ -13,8 +13,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
 
       title: 'Flutter Demo',
+
       theme: ThemeData(
         bottomAppBarColor: Colors.white,
+
         appBarTheme: AppBarTheme(
           color: Colors.white,
           elevation: 0,

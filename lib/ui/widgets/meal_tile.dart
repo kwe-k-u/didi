@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:didi/ui/widgets/rating_widget.dart';
 import 'package:didi/utils/helpers/methods.dart';
 import 'package:didi/utils/models/meal.dart';
@@ -18,8 +20,7 @@ class MealTile extends StatelessWidget {
       leading: SizedBox(
         height: 50,
         width: 50,
-        child: Placeholder(
-        ),
+        child: Image.asset(meal.image, width: 50, height: 50, fit: BoxFit.contain,),
       ),
       title: Text(meal.name),
       subtitle: Column(

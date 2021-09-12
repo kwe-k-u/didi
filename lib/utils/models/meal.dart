@@ -5,13 +5,15 @@ class Meal{
   late String provider;
   late double rating;
   late double price;
+  late String image;
 
 
   Meal({
    required this.name,
    required this.provider,
    required this.rating,
-   required this.price
+   required this.price,
+    required this.image
 });
 
 
@@ -20,7 +22,8 @@ class Meal{
       name: map["name"],
       provider: map["provider"],
       rating: map["rating"],
-      price: map["price"]
+      price: map["price"],
+      image: map["image"]
     );
   }
 

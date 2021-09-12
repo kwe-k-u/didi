@@ -43,6 +43,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       rating: 5,
                       provider: 'Akonnor Catering Services',
                       price: 18,
+                      image: "assets/images/jollof.jpg"
                     ),
                   )
                 ],

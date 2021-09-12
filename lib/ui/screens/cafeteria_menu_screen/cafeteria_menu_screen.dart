@@ -58,6 +58,8 @@ class _CafeteriaMenuScreenState extends State<CafeteriaMenuScreen> {
                           rating: 5,
                           provider: 'Akonnor Catering Services',
                           price: 18,
+                          image: "assets/images/waakye.jpg"
+
                         ),
                       ),
                     )

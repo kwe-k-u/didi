@@ -19,7 +19,7 @@ class _CustomToggleButtonsState extends State<CustomToggleButtons> {
     Size size = MediaQuery.of(context).size;
 
     return Container(
-      width: size.width * 0.64,
+      width: size.width * 0.7,
       decoration: BoxDecoration(
         border: Border.all(
           color: Colors.black,
@@ -88,7 +88,7 @@ class _ToggleButton extends StatelessWidget {
 
     return GestureDetector(
       child: Container(
-        width: size.width * 0.21,
+        width: size.width * 0.23,
         padding: EdgeInsets.all(12),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),

@@ -13,6 +13,7 @@ class HomeScreen extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       body: Container(
         padding: EdgeInsets.all(12),
         width: size.width,
